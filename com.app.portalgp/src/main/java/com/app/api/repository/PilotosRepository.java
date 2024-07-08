@@ -59,7 +59,7 @@ class DTOUltimasPosicionesPiloto{
 }
 
 @Repository
-public interface PilotosController extends JpaRepository<Piloto, Long>{
+public interface PilotosRepository extends JpaRepository<Piloto, Long>{
     
     @Query("SELECT * FROM Paises WHERE IdPais = (SELECT IdPais FROM Pilotos WHERE IdPiloto = :idPiloto)")
     Pais getPaisPiloto(Long idPiloto);
