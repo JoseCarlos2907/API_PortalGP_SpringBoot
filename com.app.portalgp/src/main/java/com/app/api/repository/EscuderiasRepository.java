@@ -6,29 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.app.api.DTO.DTOClasificacionEscuderias;
+import com.app.api.DTO.DTOPerfilEscuderia;
 import com.app.api.entity.Coche;
 import com.app.api.entity.Escuderia;
 import com.app.api.entity.Pais;
 
-class DTOClasificacionEscuderias{
-    public Long idEscuderia;
-    public String imgLogo;
-    public String nombre;
-    public int puntosTotales;
-    public String paisCC;
-    public String nombrePais;
-}
-
-class DTOPerfilEscuderia{
-    public String nombre;
-    public String imgLogo;
-    public String imgEscuderia;
-    public String descripcion;
-    public String imgPrincipal;
-    public String segundaImg;
-    public String terceraImg;
-    public String cuartaImg;
-}
 
 @Repository
 public interface EscuderiasRepository extends JpaRepository<Escuderia, Long>{

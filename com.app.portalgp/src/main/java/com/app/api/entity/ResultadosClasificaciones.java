@@ -9,8 +9,8 @@ public class ResultadosClasificaciones {
     @Column(name = "idPiloto")
     private Long idPiloto;
 
-    @Column(name = "idCarrera")
-    private Long idCarrera;
+    @Column(name = "idClasificacion")
+    private Long idClasificacion;
 
     @Column(name = "TiempoVueltaMasRapida")
     private String tiempoVueltaMasRapida;
@@ -18,9 +18,9 @@ public class ResultadosClasificaciones {
     @Column(name = "PosicionFinal")
     private int posicionFinal;
 
-    public ResultadosClasificaciones(Long idPiloto, Long idCarrera, String tiempoVueltaMasRapida, int posicionFinal) {
+    public ResultadosClasificaciones(Long idPiloto, Long idClasificacion, String tiempoVueltaMasRapida, int posicionFinal) {
         this.idPiloto = idPiloto;
-        this.idCarrera = idCarrera;
+        this.idClasificacion = idClasificacion;
         this.tiempoVueltaMasRapida = tiempoVueltaMasRapida;
         this.posicionFinal = posicionFinal;
     }
@@ -33,12 +33,12 @@ public class ResultadosClasificaciones {
         this.idPiloto = idPiloto;
     }
 
-    public Long getIdCarrera() {
-        return idCarrera;
+    public Long getIdClasificacion() {
+        return idClasificacion;
     }
 
-    public void setIdCarrera(Long idCarrera) {
-        this.idCarrera = idCarrera;
+    public void setIdClasificacion(Long idClasificacion) {
+        this.idClasificacion = idClasificacion;
     }
 
     public String getTiempoVueltaMasRapida() {
