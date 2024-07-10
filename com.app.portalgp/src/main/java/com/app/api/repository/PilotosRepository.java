@@ -57,4 +57,7 @@ public interface PilotosRepository extends JpaRepository<Piloto, Long>{
 
     @Query("DELETE FROM Usuarios_Siguen_Pilotos WHERE idUsuario = :idSeguidor AND idPiloto = :idPiloto")
     HashMap<String, String> dejarDeSeguirPiloto(Long idPiloto, Long idSeguidor);
+
+    @Query("SELECT * FROM Pilotos WHERE Nombre LIKE '%:cadena%' OR Apellido LIKE '%:cadena%' ORDER BY Nombre ASC, Apellido ASC LIMIT 5")
+    List<Piloto> getPilotosBarraBusqueda(String cadena);
 }

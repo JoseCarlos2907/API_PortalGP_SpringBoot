@@ -27,4 +27,7 @@ public interface EscuderiasRepository extends JpaRepository<Escuderia, Long>{
 
     @Query("SELECT E.Nombre AS nombre,E.imgLogo,E.imgEscuderia,E.Descripcion AS descripcion,C.ImgPrincipal AS imgPrincipal,C.SegundaImg AS segundaImg,C.TerceraImg AS terceraImg,C.CuartaImg AS cuartaImg FROM Escuderias E JOIN Coches C ON C.idEscuderia = E.idEscuderia WHERE E.idEscuderia = :idEscuderia")
     DTOPerfilEscuderia getDatosPerfilEscuderia(Long idEscuderia);
+
+    @Query("SELECT * FROM Escuderias WHERE Nombre LIKE '%:cadena%' ORDER BY Nombre ASC LIMIT :cantidad")
+    List<Escuderia> getEscuderiasBarraBusqueda(String cadena, int cantidad);
 }

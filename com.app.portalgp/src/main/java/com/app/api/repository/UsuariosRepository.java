@@ -55,4 +55,7 @@ public interface UsuariosRepository extends JpaRepository<Usuarios, Long>{
 
     @Query("DELETE FROM Usuarios_Siguen_Usuarios WHERE idUsuario1 = :idSeguidor AND idUsuario2 = :idSeguido")
     HashMap<String, String> dejarDeSeguirUsuario(Long idSeguidor, Long idSeguido);
+
+    @Query("SELECT * FROM Usuarios WHERE Nombre LIKE '%:cadena%' OR Apellidos LIKE '%:cadena%' OR NombreUsuario LIKE '%:cadena%' ORDER BY Nombre ASC, Apellidos ASC, NombreUsuario ASC LIMIT :cantidad")
+    List<Usuarios> getUsuariosBarraBusqueda(String cadena, int cantidad);
 }
