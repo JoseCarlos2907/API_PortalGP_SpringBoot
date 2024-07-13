@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.app.api.DTO.DTOComentarios;
 import com.app.api.entity.Carrera;
+import com.app.api.entity.Circuito;
+import com.app.api.entity.Clasificacion;
 import com.app.api.entity.Libre;
 
 @Repository
@@ -20,8 +22,11 @@ public interface CarrerasRepository extends JpaRepository<Carrera, Long>{
     @Query("SELECT * FROM Libres WHERE idCarrera = :idCarrera")
     List<Libre> getLibresCarrera(Long idCarrera);
 
+    @Query("SELECT * FROM Clasificaciones WHERE idCarrera = :idCarrera")
+    Clasificacion getClasificacionCarrera(Long idCarrera);
+
     @Query("SELECT * FROM Circuitos WHERE idCircuito = (SELECT idCircuito FROM Carreras WHERE idCarrera = :idCarrera)")
-    List<Libre> getCircuitoCarrera(Long idCarrera);
+    Circuito getCircuitoCarrera(Long idCarrera);
 
     @Query("SELECT Fecha FROM Carreras")
     List<String> getAllFechas();
