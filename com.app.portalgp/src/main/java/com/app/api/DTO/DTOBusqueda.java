@@ -1,5 +1,6 @@
 package com.app.api.DTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.app.api.entity.Escuderia;
@@ -10,6 +11,12 @@ public class DTOBusqueda {
     public List<Piloto> pilotos;
     public List<Usuarios> usuarios;
     public List<Escuderia> escuderias;
+
+    public DTOBusqueda() {
+        this.pilotos = new ArrayList<Piloto>();
+        this.usuarios = new ArrayList<Usuarios>();
+        this.escuderias = new ArrayList<Escuderia>();
+    }
 
     public List<Piloto> getPilotos() {
         return pilotos;

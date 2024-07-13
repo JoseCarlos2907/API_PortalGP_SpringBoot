@@ -30,5 +30,5 @@ public interface CarrerasService {
 
     public Optional<DTOComentarios> existeComentario(Long idUsuario, Long idCarrera);
 
-    public String comentarEnCarrera(Long idPiloto, Long idCarrera, Long idUsuario, String comentario);
+    public void comentarEnCarrera(Long idPiloto, Long idCarrera, Long idUsuario, String comentario);
 }

@@ -29,7 +29,7 @@ public interface PilotosService {
     
     List<DTOComentarios> getComentariosPiloto(Long idPiloto);
     
-    List<DTOClasificacionPilotosOficial> getDatosClasificacion();
+    List<DTOClasificacionPilotosOficial> getDatosClasificacionOficial();
     
     List<DTOClasificacionPilotosComunidad> getDatosClasificacionComunidad();
     
