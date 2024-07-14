@@ -82,8 +82,8 @@ public class CarrerasController {
         return ResponseEntity.ok(this.carrerasService.getListaCarreras());
     }
 
-    @PostMapping("/{idCarrera}/circuito")
-    public ResponseEntity<?> comentarCarrera(@RequestBody Long idCarrera, @RequestBody Long idPiloto, @RequestBody Long idUsuario, @RequestBody String comentario){
+    @PostMapping("/{idCarrera}/comentar")
+    public ResponseEntity<?> comentarCarrera(@PathVariable("idCarrera") Long idCarrera, @RequestBody Long idPiloto, @RequestBody Long idUsuario, @RequestBody String comentario){
         
         Optional<DTOComentarios> busquedaComentario = this.carrerasService.existeComentario(idUsuario, idCarrera);
         HashMap<String, String> response = new HashMap<String,String>();

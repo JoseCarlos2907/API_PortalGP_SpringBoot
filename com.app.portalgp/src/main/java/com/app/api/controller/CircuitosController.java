@@ -21,12 +21,12 @@ public class CircuitosController {
     private CircuitosService circuitosService;
 
     @GetMapping("/")
-    public ResponseEntity<?> getAllCarreras(){
+    public ResponseEntity<?> getAllCircuitor(){
         return ResponseEntity.ok(this.circuitosService.getAllCircuitos());
     }
 
     @GetMapping("/{idCircuito}")
-    public ResponseEntity<?> getCarreraById(@PathVariable("idCircuito") Long idCircuito){
+    public ResponseEntity<?> getCircuitoById(@PathVariable("idCircuito") Long idCircuito){
         Optional<Circuito> circuito = this.circuitosService.getCircuitoById(idCircuito);
         if(circuito.isPresent()){
             return ResponseEntity.ok(circuito);
@@ -39,7 +39,7 @@ public class CircuitosController {
     }
 
     @GetMapping("/{idCircuito}/pais")
-    public ResponseEntity<?> getPaisCarrera(@PathVariable("idCircuito") Long idCircuito){
+    public ResponseEntity<?> getPaisCircuito(@PathVariable("idCircuito") Long idCircuito){
         return ResponseEntity.ok(this.circuitosService.getPaisCircuito(idCircuito));
     }
 }
