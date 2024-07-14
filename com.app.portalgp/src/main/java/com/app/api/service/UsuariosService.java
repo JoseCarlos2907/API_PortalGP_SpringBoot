@@ -3,30 +3,55 @@ package com.app.api.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.app.api.DTO.DTOComentarios;
 import com.app.api.DTO.DTOUsuariosSeguidoresYSeguidos;
 import com.app.api.entity.Pais;
 import com.app.api.entity.Piloto;
 import com.app.api.entity.Usuarios;
+import com.app.api.repository.UsuariosRepository;
 
-public interface UsuariosService {
-    
-    public Optional<Usuarios> getUsuarioById(Long idUsuario);
+@Service
+public class UsuariosService{
 
-    public List<Usuarios> getAllUsuarios();
-    
-    public Pais getPaisUsuario(Long idUsuario);
-    
-    public List<DTOUsuariosSeguidoresYSeguidos> getSeguidoresUsuario(Long idUsuario);
+    @Autowired
+    private UsuariosRepository usuariosRepository;
 
-    public List<DTOUsuariosSeguidoresYSeguidos> getSeguidosUsuario(Long idUsuario);
+    public List<Usuarios> getAllUsuarios() {
+        return this.usuariosRepository.findAll();
+    }
 
-    public List<Piloto> getPilotosSeguidosUsuario(Long idUsuario);
+    public Optional<Usuarios> getUsuarioById(Long idUsuario) {
+        return this.usuariosRepository.findById(idUsuario);
+    }
 
-    public List<DTOComentarios> getComentariosUsuario(Long idUsuario);
-    
-    public void eliminarUsuario(Long idUsuario);
+    public Pais getPaisUsuario(Long idUsuario) {
+        return this.usuariosRepository.getPaisUsuario(idUsuario);
+    }
 
-    public void registrarUsuario(Usuarios usuario);
-    
+    public List<DTOUsuariosSeguidoresYSeguidos> getSeguidoresUsuario(Long idUsuario) {
+        return this.usuariosRepository.getSeguidoresUsuario(idUsuario);
+    }
+
+    public List<DTOUsuariosSeguidoresYSeguidos> getSeguidosUsuario(Long idUsuario) {
+        return this.usuariosRepository.getSeguidosUsuario(idUsuario);
+    }
+
+    public List<Piloto> getPilotosSeguidosUsuario(Long idUsuario) {
+        return this.usuariosRepository.getPilotosSeguidosUsuario(idUsuario);
+    }
+
+    public List<DTOComentarios> getComentariosUsuario(Long idUsuario) {
+        return this.usuariosRepository.getComentariosUsuario(idUsuario);
+    }
+
+    public void eliminarUsuario(Long idUsuario) {
+        this.usuariosRepository.deleteById(idUsuario);
+    }
+
+    public void registrarUsuario(Usuarios usuario) {
+        this.usuariosRepository.save(usuario);
+    }
 }

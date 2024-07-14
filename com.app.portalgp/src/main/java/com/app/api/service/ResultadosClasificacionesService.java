@@ -3,19 +3,34 @@ package com.app.api.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.app.api.DTO.DTOFechaYHora;
 import com.app.api.DTO.DTOResultadoTop;
 import com.app.api.entity.ResultadosClasificaciones;
+import com.app.api.repository.ResultadosClasificacionesRepository;
 
-public interface ResultadosClasificacionesService {
+@Service
+public class ResultadosClasificacionesService{
+
+    @Autowired
+    private ResultadosClasificacionesRepository resultadosClasificacionesRepository;
     
-    List<ResultadosClasificaciones> getResultadosClasifiacionesByIdClasificacion(Long idClasificacion);
-    
-    Optional<ResultadosClasificaciones> getResultadoClasificacionByIdPiloto(Long idClasificacion, Long idPiloto);
-    
-    DTOFechaYHora getFechaYHoraTopPilotos(Long idCarrera);
-    
-    List<DTOResultadoTop> getResultadosTopPilotos(Long idCarrera);
-    
+    public List<ResultadosClasificaciones> getResultadosClasifiacionesByIdClasificacion(Long idClasificacion) {
+        return resultadosClasificacionesRepository.findAll();
+    }
+
+    public Optional<ResultadosClasificaciones> getResultadoClasificacionByIdPiloto(Long idClasificacion, Long idPiloto) {
+        return resultadosClasificacionesRepository.findById(idPiloto);
+    }
+
+    public DTOFechaYHora getFechaYHoraTopPilotos(Long idCarrera) {
+        return resultadosClasificacionesRepository.getFechaYHoraTopPilotos(idCarrera);
+    }
+
+    public List<DTOResultadoTop> getResultadosTopPilotos(Long idCarrera) {
+        return resultadosClasificacionesRepository.getResultadosTopPilotos(idCarrera);
+    }
     
 }
