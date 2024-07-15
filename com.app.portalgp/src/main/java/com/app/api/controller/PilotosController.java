@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.api.DTO.DTOBasicoPerfilPiloto;
 import com.app.api.DTO.DTOClasificacionPilotosComunidad;
 import com.app.api.DTO.DTOClasificacionPilotosOficial;
+import com.app.api.DTO.DTOPerfilPiloto;
+import com.app.api.DTO.DTOUltimasPosicionesPiloto;
+import com.app.api.DTO.DTOUltimosTiemposPiloto;
 import com.app.api.entity.Piloto;
 import com.app.api.service.PilotosService;
 
@@ -122,6 +126,23 @@ public class PilotosController {
         return ResponseEntity.ok(puntuaciones);
     }
 
+    @GetMapping("/{idPiloto}/datos-perfil")
+    public ResponseEntity<?> getDatosPerfilPiloto(@PathVariable("idPiloto") Long idPiloto){
+        Optional<DTOBasicoPerfilPiloto> datosBasicos = this.pilotosService.getDatosBasicoPerfilPiloto(idPiloto);
+        List<DTOUltimasPosicionesPiloto> ultimasPosiciones = this.pilotosService.getUltimasPosicionesPiloto(idPiloto);
+        List<DTOUltimosTiemposPiloto> ultimosTiempos = this.pilotosService.getUltimosTiemposPiloto(idPiloto);
+
+        if(datosBasicos.isPresent()){
+            DTOPerfilPiloto datosPiloto = new DTOPerfilPiloto(datosBasicos, ultimosTiempos, ultimasPosiciones);
+            return ResponseEntity.ok(datosPiloto);
+        }
+
+        HashMap<String, String> response = new HashMap<String,String>();
+        response.put("msg", "No existe ningun piloto con ese id");
+
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/datos-clasificacion-oficial")
     public ResponseEntity<?> getDatosClasificacionOficial(){
         List<DTOClasificacionPilotosOficial> datosPilotos = this.pilotosService.getDatosClasificacionOficial();
@@ -150,7 +171,7 @@ public class PilotosController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("")
+    @PostMapping("/seguir")
     public ResponseEntity<?> seguirPiloto(@RequestBody Long idSeguidor, @RequestBody Long idPiloto){
         this.pilotosService.seguirPiloto(idPiloto, idSeguidor);
         HashMap<String, String> response = new HashMap<String,String>();
@@ -159,7 +180,7 @@ public class PilotosController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("")
+    @PostMapping("/no-seguir")
     public ResponseEntity<?> dejarDeSeguirPiloto(@RequestBody Long idSeguidor, @RequestBody Long idPiloto){
         this.pilotosService.dejarDeSeguirPiloto(idPiloto, idSeguidor);
         HashMap<String, String> response = new HashMap<String,String>();
