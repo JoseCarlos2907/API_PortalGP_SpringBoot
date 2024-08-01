@@ -22,7 +22,7 @@ public class ResultadosLibresController {
     private ResultadosLibresService resultadosLibresService;
 
     @GetMapping("/{idLibre}")
-    public ResponseEntity<?> getResultadosByIdLibre(@PathVariable Long idLibre){
+    public ResponseEntity<?> getResultadosByIdLibre(@PathVariable("idLibre") Long idLibre){
         List<DTOResultadosLibres> resultados = this.resultadosLibresService.getResultadosLibres(idLibre);
         if(resultados.size() > 0){
             return ResponseEntity.ok(resultados);
@@ -35,7 +35,7 @@ public class ResultadosLibresController {
     }
 
     @GetMapping("/{idLibre}/piloto/{idPiloto}")
-    public ResponseEntity<?> getResultadosByIdPiloto(@PathVariable Long idLibre, @PathVariable Long idPiloto){
+    public ResponseEntity<?> getResultadosByIdPiloto(@PathVariable("idLibre") Long idLibre, @PathVariable("idPiloto") Long idPiloto){
         Optional<DTOResultadosLibres> resultados = this.resultadosLibresService.getResultadoLibreByIdPiloto(idLibre, idPiloto);
         if(resultados.isPresent()){
             return ResponseEntity.ok(resultados);
@@ -48,7 +48,7 @@ public class ResultadosLibresController {
     }
     
     @GetMapping("/{idCarrera}/top")
-    public ResponseEntity<?> getTopPilotos(@PathVariable Long idCarrera){
+    public ResponseEntity<?> getTopPilotos(@PathVariable("idCarrera") Long idCarrera){
         List<DTOFechaYHoraLibre> datos = this.resultadosLibresService.getFechaYHoraLibresTopPilotos(idCarrera);
         if(datos.size() < 1){
             HashMap<String, String> response = new HashMap<String,String>();

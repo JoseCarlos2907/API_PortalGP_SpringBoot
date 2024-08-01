@@ -65,7 +65,7 @@ public class PilotosController {
 
     @GetMapping("/{idPiloto}/comentarios")
     public ResponseEntity<?> getComentariosPiloto(@PathVariable("idPiloto") Long idPiloto){
-        return ResponseEntity.ok(this.pilotosService.getPaisPiloto(idPiloto));
+        return ResponseEntity.ok(this.pilotosService.getComentariosPiloto(idPiloto));
     }
 
     @GetMapping("/{idPiloto}/puntuaciones")

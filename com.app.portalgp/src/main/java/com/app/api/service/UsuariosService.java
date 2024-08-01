@@ -23,6 +23,10 @@ public class UsuariosService{
         return this.usuariosRepository.findAll();
     }
 
+    public Optional<Usuarios> getUsuarioByEmail(String email) {
+        return this.usuariosRepository.getUsuarioByEmail(email);
+    }
+
     public Optional<Usuarios> getUsuarioById(Long idUsuario) {
         return this.usuariosRepository.findById(idUsuario);
     }
@@ -45,6 +49,29 @@ public class UsuariosService{
 
     public List<DTOComentarios> getComentariosUsuario(Long idUsuario) {
         return this.usuariosRepository.getComentariosUsuario(idUsuario);
+    }
+
+    public void seguirPilotoRegistro(Long idUsuario, Long idPiloto){
+        this.usuariosRepository.seguirPilotoRegistro(idUsuario, idPiloto);
+    }
+    
+    public void cambiarDatosPrincipales(String nombreUsuario, String nombre, String apellidos, String imgPerfil, String correo){
+        this.cambiarDatosPrincipales(nombreUsuario, nombre, apellidos, imgPerfil, correo);
+    }
+
+    public void cambiarTemaSeleccionadoUsuarioByEmail(int temaSeleccionado, String email){
+        this.cambiarTemaSeleccionadoUsuarioByEmail(temaSeleccionado, email);
+    }
+
+    public void seguirUsuario(Long idSeguidor, Long idSeguido){
+        this.usuariosRepository.seguirUsuario(idSeguidor, idSeguido);
+    }
+    
+    public void dejarDeSeguirUsuario(Long idSeguidor, Long idSeguido){
+        this.usuariosRepository.dejarDeSeguirUsuario(idSeguidor, idSeguido);
+    }
+    public void getUsuariosBarraBusqueda(String cadena, int cantidad){
+        this.usuariosRepository.getUsuariosBarraBusqueda(cadena, cantidad);
     }
 
     public void eliminarUsuario(Long idUsuario) {

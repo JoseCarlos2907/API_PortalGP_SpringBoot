@@ -2,7 +2,6 @@ package com.app.api.entity;
 
 import jakarta.persistence.*;
 
-@Entity
 @Table(name = "Pilotos_Corren_Libres")
 public class ResultadosLibres {
     @Column(name = "idPiloto")

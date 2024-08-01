@@ -38,9 +38,8 @@ public class Usuarios {
     @Column(name = "idPais")
     private int idPais;
 
-    public Usuarios(Long idUsuario, String imgPerfil, String nombre, String apellido, String fechaNac,
+    public Usuarios(String imgPerfil, String nombre, String apellido, String fechaNac,
             String nombreUsuario, String correo, String rol, int temaSeleccionado, int idPais) {
-        this.idUsuario = idUsuario;
         this.imgPerfil = imgPerfil;
         this.nombre = nombre;
         this.apellido = apellido;

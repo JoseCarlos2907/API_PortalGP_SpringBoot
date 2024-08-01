@@ -2,7 +2,6 @@ package com.app.api.entity;
 
 import jakarta.persistence.*;
 
-@Entity
 @Table(name = "comentarios_usuarios_pilotos_carreras")
 public class Comentario {
     
