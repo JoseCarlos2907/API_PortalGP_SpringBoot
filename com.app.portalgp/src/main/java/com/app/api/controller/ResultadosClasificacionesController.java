@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.api.DTO.DTOFechaYHora;
-import com.app.api.entity.ResultadosCarreras;
-import com.app.api.service.ResultadosCarrerasService;
+import com.app.api.entity.ResultadosClasificaciones;
+import com.app.api.service.ResultadosClasificacionesService;
 
 @RestController
-@RequestMapping(path = "api/v1/resultados-carreras")
-public class ResultadosCarrerasController {
-    
-    @Autowired
-    private ResultadosCarrerasService resultadosCarrerasService;
+@RequestMapping(path = "api/v1/resultados-clasificaciones")
+public class ResultadosClasificacionesController {
 
-    @GetMapping("/{idCarrera}")
-    public ResponseEntity<?> getResultadosByIdCarrera(@PathVariable Long idCarrera){
-        List<ResultadosCarreras> resultados = this.resultadosCarrerasService.getResultadosCarrreraByIdCarrera(idCarrera);
+    @Autowired
+    private ResultadosClasificacionesService resultadosClasificacionesService;
+
+    @GetMapping("/{idClasificacion}")
+    public ResponseEntity<?> getResultadosByIdClasificacion(@PathVariable Long idClasificacion){
+        List<ResultadosClasificaciones> resultados = this.resultadosClasificacionesService.getResultadosClasifiacionesByIdClasificacion(idClasificacion);
         if(resultados.size() > 0){
             return ResponseEntity.ok(resultados);
         }
@@ -35,9 +35,9 @@ public class ResultadosCarrerasController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{idCarrera}/piloto/{idPiloto}")
-    public ResponseEntity<?> getResultadosByIdPiloto(@PathVariable Long idCarrera, @PathVariable Long idPiloto){
-        Optional<ResultadosCarreras> resultados = this.resultadosCarrerasService.getResultadoCarreraByIdPiloto(idCarrera, idPiloto);
+    @GetMapping("/{idClasificacion}/piloto/{idPiloto}")
+    public ResponseEntity<?> getResultadosByIdPiloto(@PathVariable Long idClasificacion, @PathVariable Long idPiloto){
+        Optional<ResultadosClasificaciones> resultados = this.resultadosClasificacionesService.getResultadoClasificacionByIdPiloto(idClasificacion, idPiloto);
         if(resultados.isPresent()){
             return ResponseEntity.ok(resultados);
         }
@@ -47,10 +47,10 @@ public class ResultadosCarrerasController {
 
         return ResponseEntity.ok(response);
     }
-
+    
     @GetMapping("/{idCarrera}/top")
     public ResponseEntity<?> getTopPilotos(@PathVariable Long idCarrera){
-        Optional<DTOFechaYHora> datos = this.resultadosCarrerasService.getFechaYHoraTopPilotos(idCarrera);
+        Optional<DTOFechaYHora> datos = this.resultadosClasificacionesService.getFechaYHoraTopPilotos(idCarrera);
         if(!datos.isPresent()){
             HashMap<String, String> response = new HashMap<String,String>();
             response.put("msg", "Este evento aún no se ha efectuado");
@@ -59,7 +59,7 @@ public class ResultadosCarrerasController {
         }
 
         DTOFechaYHora datosFinales = datos.get();
-        datosFinales.setTiempos(this.resultadosCarrerasService.getResultadosTopPilotos(idCarrera));
+        datosFinales.setTiempos(this.resultadosClasificacionesService.getResultadosTopPilotos(idCarrera));
 
         return ResponseEntity.ok(datosFinales);
     }

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DTOFechaYHora{
-    public String fecha;
-    public String hora;
-    public List<DTOResultadoTop> tiempos = new ArrayList<DTOResultadoTop>();
+    private String fecha;
+    private String hora;
+    private List<DTOResultadoTop> tiempos = new ArrayList<DTOResultadoTop>();
     
     public String getFecha() {
         return fecha;
@@ -26,6 +26,4 @@ public class DTOFechaYHora{
     public void setTiempos(List<DTOResultadoTop> tiempos) {
         this.tiempos = tiempos;
     }
-
-    
 }

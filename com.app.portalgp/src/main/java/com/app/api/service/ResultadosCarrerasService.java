@@ -25,7 +25,7 @@ public class ResultadosCarrerasService{
         return this.resultadosCarrerasRepository.findById(idPiloto);
     }
 
-    public DTOFechaYHora getFechaYHoraTopPilotos(Long idCarrera) {
+    public Optional<DTOFechaYHora> getFechaYHoraTopPilotos(Long idCarrera) {
         return this.resultadosCarrerasRepository.getFechaYHoraTopPilotos(idCarrera);
     }
 

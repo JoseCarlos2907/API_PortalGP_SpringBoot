@@ -22,7 +22,7 @@ public interface ResultadosClasificacionesRepository extends JpaRepository<Resul
     Optional<ResultadosClasificaciones> getResultadoClasificacionByIdPiloto(Long idClasificacion, Long idPiloto);
 
     @Query("SELECT C.HoraInicio AS hora, C.Fecha AS fecha FROM Clasificaciones AS C JOIN Carreras Car ON Car.idCarrera = C.idCarrera WHERE C.idCarrera = :idCarrera")
-    DTOFechaYHora getFechaYHoraTopPilotos(Long idCarrera);
+    Optional<DTOFechaYHora> getFechaYHoraTopPilotos(Long idCarrera);
 
     @Query("SELECT P.Nombre AS nombre, P.Apellido AS apellido, PCC.PosicionFinal AS posicionFinal, PCC.TiempoVueltaMasRapida AS tiempo FROM Pilotos_Corren_Clasificacion PCC JOIN Pilotos P ON P.idPiloto = PCC.idPiloto JOIN Clasificaciones C ON PCC.idClasificacion = C.idClasificacion WHERE C.idCarrera = :idCarrera AND PCC.PosicionFinal <> 0 ORDER BY CAST(PCC.PosicionFinal AS UNSIGNED) LIMIT 3")
     List<DTOResultadoTop> getResultadosTopPilotos(Long idCarrera);
